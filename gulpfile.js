@@ -9,6 +9,7 @@ const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config');
 const svgSprite = require('gulp-svg-sprite');
+const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync').create();
 const stream = browserSync.stream();
 const reload = browserSync.reload();
@@ -27,6 +28,7 @@ function stylesLibs(done) {
 
 function styles(done) {
   gulp.src('./src/sass/main.scss')
+    .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./build/css'))
     .pipe(stream);
@@ -34,7 +36,8 @@ function styles(done) {
 }
 
 function script(done) {
-  gulp.src('./src/js/main.js')
+  gulp.src('./src/js/index.js')
+    .pipe(plumber())
     .pipe(webpackStream(webpackConfig), webpack)
     .pipe(gulp.dest('./build/js'))
     .pipe(stream);
@@ -43,6 +46,7 @@ function script(done) {
 
 function html(done) {
   gulp.src('./src/pug/*.pug')
+    .pipe(plumber())
     .pipe(pug({
       pretty: true,
     }))

@@ -1,4 +1,5 @@
 var test = () => {
   console.log('this is test');
 }
-test();
+
+console.log('wtf'); 
