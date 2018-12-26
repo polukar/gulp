@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/calendar black</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="selector_mobile" transform="translate(-261.000000, -20.000000)" fill="#2B449B" fill-rule="nonzero">
+            <g id="icon/calendar-black" transform="translate(255.000000, 17.000000)">
+                <path d="M19.1624998,6.7125 L10.8374999,6.7125 L10.8374999,8.625 L9.375,8.625 L9.375,6.7125 L7.4625,6.7125 L7.4625,10.875 L22.5375,10.875 L22.5375,6.7125 L20.6249997,6.7125 L20.6249997,8.625 L19.1624998,8.625 L19.1624998,6.7125 Z M20.6249997,5.25 L24,5.25 L24,21 L6,21 L6,5.25 L9.375,5.25 L9.375,3 L10.8374999,3 L10.8374999,5.25 L19.1624998,5.25 L19.1624998,3 L20.6249997,3 L20.6249997,5.25 Z M22.5375,12.3374999 L7.4625,12.3374999 L7.4625,19.5375 L22.5375,19.5375 L22.5375,12.3374999 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
