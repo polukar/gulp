@@ -1,15 +1,12 @@
 {
-  "name": "template",
+  "name": "tamplate",
   "version": "1.0.0",
   "description": "template",
   "main": "index.js",
   "scripts": {
     "start": "gulp default"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/polukar/gulp.git"
-  },
+  "repository": "git+https://github.com/polukar/gulp.git",
   "author": "Polukarov Artem",
   "license": "ISC",
   "bugs": {
@@ -35,5 +32,7 @@
     "node-sass": "^4.11.0",
     "webpack": "^4.28.2",
     "webpack-stream": "^5.2.1"
+  },
+  "dependencies": {
   }
 }

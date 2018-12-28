@@ -5,14 +5,13 @@ const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const minify = require('gulp-minify');
+const concat = require('gulp-concat');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config');
 const svgSprite = require('gulp-svg-sprite');
 const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync').create();
-const stream = browserSync.stream();
-const reload = browserSync.reload();
 
 function stylesLibs(done) {
   gulp.src('./src/sass/libs.scss')
@@ -23,6 +22,7 @@ function stylesLibs(done) {
       cascade: false
     }))
     .pipe(gulp.dest('./build/css'));
+  browserSync.reload();
   done();
 }
 
@@ -30,8 +30,8 @@ function styles(done) {
   gulp.src('./src/sass/main.scss')
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./build/css'))
-    .pipe(stream);
+    .pipe(gulp.dest('./build/css'));
+  browserSync.reload();
   done();
 }
 
@@ -39,8 +39,19 @@ function script(done) {
   gulp.src('./src/js/index.js')
     .pipe(plumber())
     .pipe(webpackStream(webpackConfig), webpack)
-    .pipe(gulp.dest('./build/js'))
-    .pipe(stream);
+    .pipe(gulp.dest('./build/js'));
+  browserSync.reload();
+  done();
+}
+
+
+function scripts(done) {
+  gulp.src([
+    './node_modules/matter-js/build/matter.js',
+    './node_modules/p5/p5.js'
+  ])
+    .pipe(concat('libs.js'))
+    .pipe(gulp.dest('./build/js'));
   done();
 }
 
@@ -78,13 +89,12 @@ function browserReload(done) {
   done();
 }
 
-// function img() {
-
-// }
 
 gulp.task('styleLibs', stylesLibs);
 gulp.task('styles', styles);
 gulp.task('script', script);
+gulp.task('sketch', sketch);
+gulp.task('scripts', scripts);
 gulp.task('html', html);
 gulp.task('sprite', sprite);
 gulp.task('browserReload', browserReload);
@@ -92,14 +102,15 @@ gulp.task('browserReload', browserReload);
 function watch(done) {
   gulp.watch('./src/sass/**/*.scss', gulp.parallel('styles'));
   gulp.watch('./src/js/**/*.js', gulp.parallel('script'));
-  gulp.watch('./src/pug/**/*.pug', gulp.parallel('html'), reload);
+  gulp.watch('./src/js/sketch.js', gulp.parallel('sketch'));
+  gulp.watch('./src/pug/**/*.pug', gulp.parallel('html'));
   done();
 }
 
-gulp.task('watch', watch, gulp.parallel(browserReload));
+gulp.task('watch', watch);
 
 
-gulp.task('default', gulp.parallel('styleLibs', 'styles', 'script', 'sprite', 'browserReload', 'html', 'watch'), false);
+gulp.task('default', gulp.parallel('styleLibs', 'styles', 'script', 'scripts', 'sprite', 'browserReload', 'html', 'watch'), false);
 
 
 
